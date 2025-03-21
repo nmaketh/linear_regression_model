@@ -1,80 +1,74 @@
-# prediction.py
-
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
-import joblib
 import numpy as np
-import pandas as pd
+from joblib import load
+from fastapi.middleware.cors import CORSMiddleware
 
-# Load the saved model and scaler
-best_model = joblib.load("best_model.pkl")
-scaler = joblib.load("scaler.pkl")
+# Load the trained model and scaler
+model = load("best_model.pkl")  # Replace with your model file
+scaler = load("scaler.pkl")  # Replace with your scaler file
 
-# Initialize the FastAPI app
+# Define input schema using Pydantic
+class PredictionInput(BaseModel):
+    gender: int
+    age: float
+    profession: int
+    academic_pressure: float
+    work_pressure: float
+    cgpa: float
+    study_satisfaction: float
+    job_satisfaction: float
+    sleep_duration: int
+    dietary_habits: int
+    degree: int
+    suicidal_thoughts: int
+    work_study_hours: float
+    financial_stress: float
+    family_history: int
+
+# Initialize FastAPI app
 app = FastAPI()
 
-# Define the input schema using Pydantic
-class PredictionInput(BaseModel):
-    Gender: int
-    Age: float
-    Profession: int
-    Academic_Pressure: float
-    Work_Pressure: float
-    CGPA: float
-    Study_Satisfaction: float
-    Job_Satisfaction: float
-    Sleep_Duration: int
-    Dietary_Habits: int
-    Degree: int
-    Suicidal_Thoughts: int
-    Work_Study_Hours: float
-    Financial_Stress: float
-    Family_History: int
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
-# Define the prediction endpoint
+# Create prediction endpoint
 @app.post("/predict")
 def predict(input_data: PredictionInput):
-    try:
-        # Convert input data into a DataFrame
-        features = [
-            input_data.Gender,
-            input_data.Age,
-            input_data.Profession,
-            input_data.Academic_Pressure,
-            input_data.Work_Pressure,
-            input_data.CGPA,
-            input_data.Study_Satisfaction,
-            input_data.Job_Satisfaction,
-            input_data.Sleep_Duration,
-            input_data.Dietary_Habits,
-            input_data.Degree,
-            input_data.Suicidal_Thoughts,
-            input_data.Work_Study_Hours,
-            input_data.Financial_Stress,
-            input_data.Family_History
-        ]
-        
-        # Create a DataFrame for consistency with training data
-        feature_names = [
-            'Gender', 'Age', 'Profession', 'Academic Pressure', 'Work Pressure', 'CGPA',
-            'Study Satisfaction', 'Job Satisfaction', 'Sleep Duration', 'Dietary Habits',
-            'Degree', 'Have you ever had suicidal thoughts ?', 'Work/Study Hours',
-            'Financial Stress', 'Family History of Mental Illness'
-        ]
-        input_df = pd.DataFrame([features], columns=feature_names)
-        
-        # Scale the input data
-        input_scaled = scaler.transform(input_df)
-        
-        # Make prediction
-        prediction = best_model.predict(input_scaled)[0]
-        
-        return {"prediction": int(prediction)}  # Return prediction as an integer
-    
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+    # Convert input data to a numpy array
+    input_array = np.array([
+        input_data.gender,
+        input_data.age,
+        input_data.profession,
+        input_data.academic_pressure,
+        input_data.work_pressure,
+        input_data.cgpa,
+        input_data.study_satisfaction,
+        input_data.job_satisfaction,
+        input_data.sleep_duration,
+        input_data.dietary_habits,
+        input_data.degree,
+        input_data.suicidal_thoughts,
+        input_data.work_study_hours,
+        input_data.financial_stress,
+        input_data.family_history,
+    ]).reshape(1, -1)
 
-# Run the app locally (for testing purposes)
+    # Scale the input data
+    input_scaled = scaler.transform(input_array)
+
+    # Make prediction
+    prediction = model.predict(input_scaled)[0]
+
+    # Return the prediction
+    return {"prediction": prediction}
+
+# Run the app
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
