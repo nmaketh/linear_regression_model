@@ -5,8 +5,8 @@ from joblib import load
 from fastapi.middleware.cors import CORSMiddleware
 
 # Load the trained model and scaler
-model = load("best_model.pkl")  # Replace with your model file
-scaler = load("scaler.pkl")  # Replace with your scaler file
+model = load("best_model.pkl")
+scaler = load("scaler.pkl")
 
 # Define input schema using Pydantic
 class PredictionInput(BaseModel):
@@ -36,6 +36,11 @@ app.add_middleware(
     allow_methods=["*"],  # Allow all methods
     allow_headers=["*"],  # Allow all headers
 )
+
+# Root route
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the Depression Prediction API!"}
 
 # Create prediction endpoint
 @app.post("/predict")
