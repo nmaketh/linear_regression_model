@@ -1,5 +1,11 @@
 Depression Prediction App
+
+
+
 Overview
+
+
+
 This project is a Depression Prediction App that uses a machine learning model to predict the likelihood of depression based on user inputs. The app is built using Flutter for the frontend and a Python-based API for the backend. The machine learning model is trained on a dataset containing various features such as age, gender, academic pressure, work pressure, and more.
 
 Features
