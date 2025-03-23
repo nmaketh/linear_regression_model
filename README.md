@@ -73,7 +73,7 @@ Visualizations
 
 
  
-   ![Depression Distribution](screenshots/depression_distribution.png)
+   ![Depression Distribution](screenshots/"C:\Users\HP\OneDrive\Pictures\Screenshots\Screenshot 2025-03-22 140709.png")
 
 
 
