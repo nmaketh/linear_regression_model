@@ -36,6 +36,91 @@ Machine Learning: Scikit-learn, Pandas, NumPy, matplotlib
 
 Deployment: Render (for API), GitHub (for code hosting)
 
+
+
+Dataset
+
+
+
+Description
+
+
+
+The dataset contains information about students and their mental health, including features such as age, gender, academic pressure, work pressure, CGPA, and more. The target variable is `Depression`, which represents the likelihood of depression.
+
+Source
+
+
+
+The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/hopesb/student-depression-dataset).
+
+
+Visualizations
+
+
+
+ Correlation Heatmap:
+
+ 
+   ![Correlation Heatmap]
+
+
+   (screenshots/correlation_heatmap.png)
+
+   
+   
+   Distribution of Depression Scores:
+
+
+ 
+   ![Depression Distribution](screenshots/depression_distribution.png)
+
+
+
+Machine Learning Models
+Models Implemented
+
+
+1. Linear Regression (SGDRegressor)
+2. Decision Tree Regressor
+3. Random Forest Regressor
+   
+
+Evaluation Metrics
+
+
+
+
+| Model                      | Training MSE     | Testing MSE     |
+|----------------------------|------------------|-----------------|
+| Linear Regression (SGD)    | 0.12             | 0.12            |
+| Decision Tree Regressor    | 0.12             | 0.13            |
+| Random Forest Regressor    | 0.07             | 0.11            |
+
+
+
+
+Best Model
+
+
+The Random Forest Regressor was selected as the best model due to its lowest testing MSE.
+
+
+
+API
+
+Endpoints
+
+
+
+1. **GET `/`**: Welcome message.
+   ```json
+   {
+     "message": "Welcome to the Depression Prediction API!"
+   }
+
+   
+
 Project Structure
 
 
@@ -50,6 +135,41 @@ linear_regression/summative/
 │   │   ├── prediction_page.dart# UI for prediction form
 │   ├── pubspec.yaml            # Flutter dependencies
 ├── README.md                   # Project documentation
+
+
+Swagger UI
+
+
+
+The API documentation is available at https://prediction-api-ife7.onrender.com.
+
+Mobile App
+
+
+
+Features
+
+
+Prediction Page: A form to input data and view predictions.
+
+
+Input Fields: Text boxes for all features (e.g., age, gender, academic pressure, etc.).
+
+
+Predict Button: Triggers the API call to fetch predictions.
+
+
+Output Display: Displays the predicted depression score.
+
+
+
+
+Screenshots
+
+
+
+Input Form	Prediction Result
+Input Form	Prediction Result
 
 
 
