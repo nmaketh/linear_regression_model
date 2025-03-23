@@ -8,7 +8,12 @@ Overview
 
 This project is a Depression Prediction App that uses a machine learning model to predict the likelihood of depression based on user inputs. The app is built using Flutter for the frontend and a Python-based API for the backend. The machine learning model is trained on a dataset containing various features such as age, gender, academic pressure, work pressure, and more.
 
+
+
 Features
+
+
+
 User-Friendly Interface: A clean and intuitive UI for entering input data.
 
 Machine Learning Model: A trained model that predicts depression likelihood based on user inputs.
@@ -17,7 +22,12 @@ API Integration: The Flutter app communicates with a Python-based API to fetch p
 
 Responsive Design: The app is designed to work seamlessly on both mobile and tablet devices.
 
+
+
 Technologies Used
+
+
+
 Frontend: Flutter (Dart)
 
 Backend: Python (FastAPI or Flask)
@@ -27,8 +37,9 @@ Machine Learning: Scikit-learn, Pandas, NumPy, matplotlib
 Deployment: Render (for API), GitHub (for code hosting)
 
 Project Structure
-Copy
-depression-prediction-app/
+
+
+linear_regression/summative/
 ├── api/                        # Backend API code
 │   ├── main.py                 # API entry point
 │   ├── model.pkl               # Trained machine learning model
@@ -39,7 +50,13 @@ depression-prediction-app/
 │   │   ├── prediction_page.dart# UI for prediction form
 │   ├── pubspec.yaml            # Flutter dependencies
 ├── README.md                   # Project documentation
+
+
+
 How It Works
+
+
+
 User Input:
 
 The user enters data into the Flutter app (e.g., age, gender, academic pressure, etc.).
@@ -60,20 +77,20 @@ Setup Instructions
 1. Backend (API)
 Clone the Repository:
 
-bash
-Copy
-git clone https://github.com/your-username/depression-prediction-app.git
-cd depression-prediction-app/api
+
+git clone https://github.com/nmaketh/linear_regression.git
+cd linear_regression/summative/API
+
+
 Install Dependencies:
 
-bash
-Copy
-pip install -r requirements.txt
+
+pip install -r requirements.
+
 Run the API:
 
-bash
-Copy
 uvicorn main:app --host 0.0.0.0 --port 8000
+
 The API will be available at http://localhost:8000.
 
 Deploy the API:
@@ -87,18 +104,22 @@ Follow the official Flutter installation guide.
 
 Run the App:
 
-bash
-Copy
-cd depression-prediction-app/flutter_app
+
+cd linear_regression/summative/flutter_app
+
+
 flutter pub get
+
+
 flutter run
-Update API URL:
+
+Update API URL: https://prediction-api-ife7.onrender.com
 
 Open lib/main.dart and replace the API URL with your deployed API endpoint:
 
-dart
-Copy
-final url = Uri.parse('https://your-api-url/predict');
+
+final url = Uri.parse('https://prediction-api-ife7.onrender.com');
+
 Machine Learning Model
 Dataset
 The model is trained on a dataset containing the following features:
@@ -134,6 +155,7 @@ Financial Stress
 Family History
 
 Training
+
 Preprocessing:
 
 Handle missing values, encode categorical variables, and normalize numerical features.
@@ -147,10 +169,11 @@ Evaluation:
 Evaluate the model using metrics like accuracy, precision, recall, and F1-score.
 
 Saving the Model
+
 Save the trained model using joblib or pickle:
 
 python
-Copy
+
 import joblib
 joblib.dump(model, 'model.pkl')
 API Endpoints
@@ -185,9 +208,16 @@ Copy
 {
   "prediction": 0.47
 }
+
+
+
+
 Screenshots
 Input Form	Prediction Result
 Input Form	Prediction Result
+
+
+
 Contributing
 Contributions are welcome! Follow these steps:
 
@@ -201,7 +231,7 @@ Push to the branch (git push origin feature/YourFeature).
 
 Open a pull request.
 
-License
+
 
 Acknowledgments
 Dataset: Kaggle
