@@ -22,6 +22,8 @@ API Integration: The Flutter app communicates with a Python-based API to fetch p
 
 Responsive Design: The app is designed to work seamlessly on both mobile and tablet devices.
 
+SEE MY DEMO VIDEO HERE: https://youtu.be/2g3Y0lT2TjI
+
 
 
 Technologies Used
@@ -52,28 +54,7 @@ Source
 
 
 
-The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/hopesb/student-depression-dataset).
-
-
-Visualizations
-
-
-
- Correlation Heatmap:
-
- 
-   ![Correlation Heatmap]
-
-
-   (screenshots/correlation_heatmap.png)
-
-   
-   
-   Distribution of Depression Scores:
-
-
- 
-   ![Depression Distribution](screenshots/"C:\Users\HP\OneDrive\Pictures\Screenshots\Screenshot 2025-03-22 140709.png")
+The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/hopesb/student-depression-dataset)
 
 
 
@@ -141,7 +122,8 @@ Swagger UI
 
 
 
-The API documentation is available at https://prediction-api-ife7.onrender.com.
+The API documentation is available at https://prediction-api-ife7.onrender.com/docs.
+
 
 Mobile App
 
@@ -164,12 +146,6 @@ Output Display: Displays the predicted depression score.
 
 
 
-Screenshots
-
-
-
-Input Form	Prediction Result
-Input Form	Prediction Result
 
 
 
